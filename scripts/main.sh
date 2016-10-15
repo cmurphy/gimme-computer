@@ -14,7 +14,9 @@ main() {
     shift
     case $command in
     'image')
-        echo "got image"
+        source $SCRIPTDIR/image.sh
+        sudo true # sudo up for later
+        create_image "$@"
     ;;
     'vm')
         echo "got vm"

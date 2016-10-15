@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
-source $(dirname $0)/../scripts/main.sh
+if [ -n "DEBUG" ] ; then
+    set -x
+fi
+
+SCRIPTDIR=$(dirname $0)/../scripts
+
+source ${SCRIPTDIR}/main.sh
 main "$@"
