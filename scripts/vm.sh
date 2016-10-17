@@ -3,22 +3,22 @@
 source ${SCRIPTDIR}/defaults.sh
 
 prepare_environment() {
-    if ! rpm -q libvirt ; then
+    if ! rpm -q libvirt >/dev/null ; then
         sudo zypper --non-interactive install libvirt
         sudo systemctl start libvirtd
     fi
     if [ ! -f /usr/bin/qemu-kvm ] ; then
         sudo zypper --non-interactive install qemu-kvm
     fi
-    if ! groups $USER | grep libvirt ; then
+    if ! groups $USER | grep libvirt >/dev/null ; then
         sudo usermod -a -G libvirt $USER
     fi
 }
 
 check_net() {
     local netname=$1
-    if ! virsh net-list | grep $netname ; then
-        if ! virsh net-list --all | grep $netname ; then
+    if ! virsh net-list | grep $netname >/dev/null ; then
+        if ! virsh net-list --all | grep $netname >/dev/null ; then
             echo "The network $netname is not defined."
             exit 1
         else
