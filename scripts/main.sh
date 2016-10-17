@@ -27,7 +27,8 @@ main() {
         ssh_vm "$@"
     ;;
     'clean')
-        echo "got clean"
+        source $SCRIPTDIR/clean.sh
+        clean_vm "$@"
     ;;
     *)
         invalid_command $command
