@@ -19,7 +19,8 @@ main() {
         create_image "$@"
     ;;
     'vm')
-        echo "got vm"
+        source $SCRIPTDIR/vm.sh
+        create_vm "$@"
     ;;
     'ssh')
         echo "got ssh"

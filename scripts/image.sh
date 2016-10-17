@@ -10,8 +10,6 @@ prepare_environment() {
     if [ ! -d $DDD_DIR ] ; then
         git clone https://github.com/greghaynes/dib-dev-deploy $DDD_DIR
     fi
-    export PATH=$PATH:$DDD_DIR/scripts
-    export DDD_WORKDIR=${DDD_DIR}-deps
     ddd-pull-tools
 }
 
