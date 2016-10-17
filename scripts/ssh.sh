@@ -12,13 +12,13 @@ ssh_cmd() {
 ssh_vm() {
     local vmname=$1
     shift
-    local vmip=$(virsh domifaddr ubuntu | awk 'NR==3 {print $4}')
+    local vmip=$(virsh domifaddr $vmname | awk 'NR==3 {print $4}')
     local tries=2
     while [ -z "$vmip" -a "$tries" -gt 0 ] ; do # IP address not assigned yet
         echo "VM is not ready yet. Trying $tries more time(s) in 15 seconds."
         sleep 15
         tries=$((tries-1))
-        vmip=$(virsh domifaddr ubuntu | awk 'NR==3 {print $4}')
+        vmip=$(virsh domifaddr $vmname | awk 'NR==3 {print $4}')
     done
     if [ -z "$vmip" -a "$tries" -eq 0 ] ; then
          echo "Could not reach VM."
