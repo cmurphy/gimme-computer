@@ -46,7 +46,10 @@ check_name() {
 
 define_vm() {
     local vmname=$1
-    local imagepath=$2
+    local sourceimagepath=$2
+    local imagefilename=$(basename $imagepath)
+    local imagepath=${IMAGE_DIR}/${imagefilename%.qcow2}-$vmname-$(date -Iseconds).qcow2
+    cp $sourceimagepath $imagepath
     ddd-define-vm $vmname $imagepath
 }
 
