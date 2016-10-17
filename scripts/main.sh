@@ -23,7 +23,8 @@ main() {
         create_vm "$@"
     ;;
     'ssh')
-        echo "got ssh"
+        source $SCRIPTDIR/ssh.sh
+        ssh_vm "$@"
     ;;
     'clean')
         echo "got clean"
