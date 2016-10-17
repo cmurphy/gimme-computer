@@ -44,6 +44,17 @@ check_name() {
     echo $vmname
 }
 
+check_path() {
+    local imagepath=$1
+    if [ "${imagepath:0:1}" != "/" ] ; then
+        imagepath=${IMAGE_DIR}/${imagepath}
+    fi
+    if [ "${imagepath##*.qcow2}" != "qcow2" ] ; then
+        imagepath=${imagepath}.qcow2
+    fi
+    echo $imagepath
+}
+
 define_vm() {
     local vmname=$1
     local sourceimagepath=$2
@@ -69,6 +80,7 @@ create_vm() {
     prepare_environment
     check_net default
     vmname=$(check_name $vmname)
+    imagepath=$(check_path $imagepath)
     define_vm $vmname $imagepath
     start_vm $vmname
 }
