@@ -33,5 +33,5 @@ create_output_option() {
 
 create_image() {
     prepare_environment
-    ddd-create-image devuser dhcp-all-interfaces $(create_output_option $*) $*
+    ddd-create-image devuser dhcp-all-interfaces -p git --image-size 30 $(create_output_option $*) $*
 }
