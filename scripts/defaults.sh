@@ -8,6 +8,7 @@ export DDD_VM_TEMPLATE=${DDD_DIR}/templates/vm.xml
 export DDD_EMULATOR=${DDD_EMULATOR:-/usr/bin/qemu-kvm}
 export IMAGE_DIR=${IMAGE_DIR:-${HOME}/.gimme-images}
 export DIB_DEV_USER_PWDLESS_SUDO=${DIB_DEV_USER_PWDLESS_SUDO:-Yes}
+export DIB_DEV_USER_SHELL=/bin/bash
 export IMAGE_NAME=${IMAGE_NAME:-}
 export DDD_EMULATOR=${DDD_EMULATOR:-/usr/bin/qemu-kvm}
 export LIBVIRT_DEFAULT_URI=qemu:///system
