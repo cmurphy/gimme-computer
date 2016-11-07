@@ -5,6 +5,8 @@ source ${SCRIPTDIR}/defaults.sh
 prepare_environment() {
     if ! rpm -q libvirt >/dev/null ; then
         sudo zypper --non-interactive install libvirt
+    fi
+    if ! systemctl status libvirtd >/dev/null ; then
         sudo systemctl start libvirtd
     fi
     if [ ! -f /usr/bin/qemu-kvm ] ; then
