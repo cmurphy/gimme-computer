@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ${SCRIPTDIR}/defaults.sh
+
 clean_vm() {
     local vmname=$1
     local force=$2
