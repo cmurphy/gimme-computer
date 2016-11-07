@@ -5,7 +5,7 @@ if [ -n "$DEBUG" ] ; then
     set -x
 fi
 
-SCRIPTDIR=$(dirname $0)/../scripts
+SCRIPTDIR=$(dirname $(realpath $0))/../scripts
 
 source ${SCRIPTDIR}/main.sh
 main "$@"
