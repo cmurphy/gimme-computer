@@ -26,6 +26,10 @@ main() {
         source $SCRIPTDIR/ssh.sh
         ssh_vm "$@"
     ;;
+    'ip')
+        source $SCRIPTDIR/ip.sh
+        ip_vm "$@"
+    ;;
     'clean')
         source $SCRIPTDIR/clean.sh
         clean_vm "$@"
