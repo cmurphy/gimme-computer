@@ -9,7 +9,9 @@ clean_vm() {
         force=true
     fi
     local disk=$(virsh domblklist $vmname | awk 'NR==3 {print  $2}')
-    virsh destroy $vmname
+    if ! virsh domstate $vmname | grep 'shut off' ; then
+        virsh destroy $vmname
+    fi
     virsh undefine $vmname
     if [ "$force" == "true" ] ; then
         rm $disk -f
