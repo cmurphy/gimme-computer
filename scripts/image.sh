@@ -7,10 +7,13 @@ prepare_environment() {
         sudo zypper --non-interactive install qemu
     fi
     mkdir -p $IMAGE_DIR
-    if [ ! -d $DDD_DIR ] ; then
-        git clone https://github.com/greghaynes/dib-dev-deploy $DDD_DIR
+    if [ ! -d $DIBVENV ] ; then
+        virtualenv $DIBVENV
     fi
-    ddd-pull-tools
+    if ! which disk-image-create ; then
+        source $DIBVENV/bin/activate
+    fi
+    pip install -U diskimage-builder
 }
 
 create_output_option() {
@@ -33,5 +36,9 @@ create_output_option() {
 
 create_image() {
     prepare_environment
-    ddd-create-image devuser dhcp-all-interfaces -p git --image-size 30 $(create_output_option $*) $*
+    disk-image-create vm cloud-init-nocloud pip-and-virtualenv devuser \
+                      -p python,git \
+                      -u \
+                      --image-size 30 \
+                      $(create_output_option $*) $*
 }

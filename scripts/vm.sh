@@ -63,7 +63,13 @@ define_vm() {
     local imagefilename=$(basename $imagepath)
     local imagepath=${IMAGE_DIR}/${imagefilename%.qcow2}-$vmname-$(date -Iseconds).qcow2
     cp $sourceimagepath $imagepath
-    ddd-define-vm $vmname $imagepath
+    definition_path=$(mktemp)
+    sed -e "s/{{name}}/$vmname/" \
+        -e "s/{{memory}}/$VM_MEMORY/" \
+        -e "s,{{imagefile}},$imagepath," \
+        $SCRIPTDIR/../templates/vm.xml | tee $definition_path
+    virsh define $definition_path
+    rm $definition_path
 }
 
 start_vm() {
