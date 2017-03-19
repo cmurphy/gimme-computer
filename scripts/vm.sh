@@ -51,7 +51,7 @@ check_path() {
     if [ "${imagepath:0:1}" != "/" ] ; then
         imagepath=${IMAGE_DIR}/${imagepath}
     fi
-    if [ "${imagepath##*.qcow2}" != "qcow2" ] ; then
+    if [ "${imagepath##*.}" != "qcow2" ] ; then
         imagepath=${imagepath}.qcow2
     fi
     echo $imagepath
