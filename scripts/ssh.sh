@@ -6,12 +6,20 @@ source ${SCRIPTDIR}/ip.sh
 ssh_cmd() {
   local vm_ip=$1
   shift
-  ssh devuser@${vm_ip} -o StrictHostKeyChecking=no "$*"
+  local vm_user=$1
+  shift
+  ssh ${vm_user}@${vm_ip} -o StrictHostKeyChecking=no "$*"
 }
 
 ssh_vm() {
     local vmname=$1
     shift
+    if [ "$1" == "-u" ] ; then
+        local user=$2
+        shift ; shift
+    else
+        local user='devuser'
+    fi
     local vmip=$(ip_vm $vmname)
     local tries=2
     while [ -z "$vmip" -a "$tries" -gt 0 ] ; do # IP address not assigned yet
