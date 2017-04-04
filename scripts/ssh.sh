@@ -34,10 +34,10 @@ ssh_vm() {
     fi
     tries=2
     while [ "$tries" -gt 0 ] ; do
-        local error=$(ssh_cmd $vmip true 2>&1) # Check for connection refused and try again
+        local error=$(ssh_cmd $vmip $user true 2>&1) # Check for connection refused and try again
         if [[ ! $error =~ .*Connection\ refused.* ]] ; then
             echo "SSHing to $vmip"
-            ssh_cmd $vmip "$*"
+            ssh_cmd $vmip $user "$*"
             break
         else
             echo "SSH is not ready yet. Trying again in 5 seconds."
