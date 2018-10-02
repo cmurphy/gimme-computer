@@ -36,9 +36,15 @@ create_output_option() {
 
 create_image() {
     prepare_environment
+    if [[ "$*" =~ "sles" && "$DIB_RELEASE" == '12-SP4' ]] ; then
+        local mkfs_opts='-O ^metadata_csum'
+    else
+        local mkfs_opts=''
+    fi
     disk-image-create vm cloud-init-nocloud pip-and-virtualenv devuser openssh-server dhcp-all-interfaces \
                       -p python,git,less,vim,man \
                       -u \
                       --image-size 30 \
+                      --mkfs-options "$mkfs_opts" \
                       $(create_output_option $*) $*
 }
