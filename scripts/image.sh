@@ -37,7 +37,7 @@ create_output_option() {
 create_image() {
     prepare_environment
     disk-image-create vm cloud-init-nocloud pip-and-virtualenv devuser openssh-server dhcp-all-interfaces \
-                      -p python,git \
+                      -p python,git,less,vim,man \
                       -u \
                       --image-size 30 \
                       $(create_output_option $*) $*
