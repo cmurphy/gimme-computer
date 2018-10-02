@@ -23,7 +23,7 @@ create_output_option() {
     if [ -n "$IMAGE_NAME" ] ; then
         local image_name=$IMAGE_NAME
     else
-        for distro in ubuntu debian centos centos7 opensuse fedora gentoo ; do
+        for distro in ubuntu debian centos centos7 opensuse fedora gentoo sles ; do
             if [[ "$*" =~ "$distro" ]] ; then
                 local image_name=$distro
                 break
