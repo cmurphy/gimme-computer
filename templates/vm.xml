@@ -2,7 +2,7 @@
   <name>{{name}}</name>
   <memory unit='MiB'>{{memory}}</memory>
   <cpu mode='host-model'> </cpu>
-  <vcpu>1</vcpu>
+  <vcpu>{{cpus}}</vcpu>
   <os>
     <type arch='x86_64'>hvm</type>
     <boot dev='hd'/>

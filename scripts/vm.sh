@@ -67,6 +67,7 @@ define_vm() {
     sed -e "s/{{name}}/$vmname/" \
         -e "s/{{memory}}/$VM_MEMORY/" \
         -e "s,{{imagefile}},$imagepath," \
+        -e "s/{{cpus}}/$VM_CPUS/" \
         $SCRIPTDIR/../templates/vm.xml | tee $definition_path
     virsh define $definition_path
     rm $definition_path
