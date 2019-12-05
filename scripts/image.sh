@@ -41,7 +41,7 @@ create_image() {
     else
         local mkfs_opts=''
     fi
-    disk-image-create vm cloud-init-nocloud pip-and-virtualenv devuser openssh-server simple-init resolv-conf \
+    disk-image-create vm cloud-init-nocloud pip-and-virtualenv devuser openssh-server simple-init resolv-conf ${ELEMENTS:-} \
                       -p python,git,less,vim,man \
                       -u \
                       --image-size 30 \
