@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+if [ -e "/tmp/in_target.d/resolv.conf.ORIG" ] ; then
+    cp /tmp/in_target.d/resolv.conf.ORIG /etc/resolv.conf.ORIG
+fi

@@ -11,3 +11,4 @@ export IMAGE_NAME=${IMAGE_NAME:-}
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export VM_MEMORY=${VM_MEMORY:-4096}
 export VM_CPUS=${VM_CPUS:-1}
+export ELEMENTS_PATH=${ELEMENTS_PATH:+"$ELEMENTS_PATH:"}${SCRIPTDIR}/../elements
