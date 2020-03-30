@@ -6,6 +6,5 @@ fi
 set -eu
 set -o pipefail
 
-if [ -e "/tmp/in_target.d/resolv.conf.ORIG" ] ; then
-    cp /tmp/in_target.d/resolv.conf.ORIG /etc/resolv.conf.ORIG
-fi
+# assume image will be run with libvirt using the default network
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf.ORIG
