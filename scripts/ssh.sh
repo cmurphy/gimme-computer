@@ -8,7 +8,7 @@ ssh_cmd() {
   shift
   local vm_user=$1
   shift
-  ssh ${vm_user}@${vm_ip} -o StrictHostKeyChecking=no "$*"
+  ssh -i ${DIB_DEV_USER_AUTHORIZED_KEYS%%.pub} ${vm_user}@${vm_ip} -o StrictHostKeyChecking=no "$*"
 }
 
 ssh_vm() {
