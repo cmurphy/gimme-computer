@@ -63,6 +63,9 @@ define_vm() {
     local imagefilename=$(basename $imagepath)
     local imagepath=${IMAGE_DIR}/${imagefilename%.qcow2}-$vmname-$(date -Iseconds).qcow2
     cp $sourceimagepath $imagepath
+    if [ -n "${VM_DISK}" ] ; then
+        qemu-img resize $imagepath $VM_DISK
+    fi
     definition_path=$(mktemp)
     sed -e "s/{{name}}/$vmname/" \
         -e "s/{{memory}}/$VM_MEMORY/" \
